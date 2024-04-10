@@ -1,7 +1,7 @@
 #CONSTANTS
 LICENSE
-.gitnore
-data/MYS.py
+.gitignore
+data/MSY.py
 
 #DYNAMIC
 README.md
