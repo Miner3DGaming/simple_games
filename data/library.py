@@ -96,5 +96,3 @@ def get_translation(key, language):
 
 
 
-
-

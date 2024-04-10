@@ -1,13 +1,13 @@
 #CONTANTS
-README.md
 LICENSE
 .gitnore
+data/MYS.py
 
 #DYNAMIC
+README.md
 version.txt
 launch.py
 data/check_games.py
 data/check_for_updates.py
 data/library.py
 data/download_update.py
-data/required_files.txt
