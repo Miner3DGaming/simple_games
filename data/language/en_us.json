@@ -1,0 +1,10 @@
+{
+    "launcher.update.newer_version_available": "Newer version available",
+    "launcher.update.local_version_is_newer":"The local file is supposedly newer than what's publicly available, did you manually edit it?",
+    "launcher.update.is_up_to_date":"Local version is up to date",
+    "launcher.update.local_version_file_error":"Somethings went wrong when parsing/version checking your local version.txt file (%s)",
+    "launcher.update.online_version_file_error":"Somethings went wrong when parsing/version checking the online (update) version.txt file. You probably can't personally do anything about that but I'm still gonna log it because it should'nt happen",
+    "launcher.update.connection_error":"Failed to check for updates. Error code: %s",
+    "launcher.update.achievement_made_how_did_we_get_here":"If you see this (without looking into the source code), how? Just how? Every case has been handled, this message can only appear when a value isn't equal, smaller, or bigger than another value which is mathematically possible.",
+    "":""
+}

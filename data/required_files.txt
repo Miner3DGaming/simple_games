@@ -1,0 +1,13 @@
+#CONTANTS
+README.md
+LICENSE
+.gitnore
+
+#DYNAMIC
+version.txt
+launch.py
+data/check_games.py
+data/check_for_updates.py
+data/library.py
+data/download_update.py
+data/required_files.txt
