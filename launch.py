@@ -57,7 +57,7 @@ else:
     is_connected_to_wifi = internet_status
 
 
-library.PRINT_SUPPRESSION_LEVEL = 2
+library.PRINT_SUPPRESSION_LEVEL = 1
 if check_for_update_bool and is_connected_to_wifi:
     from data import check_for_update
     check_for_updates = check_for_update.check_for_updates(LANGUAGE)

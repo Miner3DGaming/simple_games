@@ -8,9 +8,9 @@ class check_for_updates():
         self.language = language
 
 
-        self.game_path = os.path.dirname(os.path.dirname(__file__))
+        self.base_path = os.path.dirname(os.path.dirname(__file__))
 
-        self.local_version_file = self.game_path + "\\version.txt"
+        self.local_version_file = self.base_path + "\\version.txt"
         self.version_link = "https://raw.githubusercontent.com/Miner3DGaming/simple_games/main/version.txt"
 
 
@@ -23,7 +23,7 @@ class check_for_updates():
         self.ACHIEVEMENT_MADE_HOW_DID_WE_GET_HERE = "uuuhhhhhh_huh?_this_isn't_supposed_to_happen"
 
 
-    def does_newer_version_exist(self, version):
+    def compare_versions(self, version):
         """
             Check if the given version if newer than the local version.
             How? By comparing the value by between and outside the dots and magic.
@@ -59,7 +59,7 @@ class check_for_updates():
         response = self.requests.get(self.version_link)
         if response.status_code != 200: print(self.library.ERROR, self.library.get_translation("launcher.update.connection_error", self.language) % response.status_code)
         else:
-            version_status = self.does_newer_version_exist(response.text)
+            version_status = self.compare_versions(response.text)
             if version_status == self.NEWER_VERSION_AVAILABLE:
                 self.print(self.library.INFO, self.library.get_translation("launcher.update.newer_version_available", self.language))
                 return True
