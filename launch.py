@@ -1,3 +1,14 @@
+import random
+if random.random() > 0.95:
+    print(random.choice([
+                        "Starting Simple Game Launcher, a Crashaholic like no other!", 
+                        "Starting Simple Game Launcher, stealing less user data than Google, Twitch, Microsoft, Firefox, Opera, Facebook, and I'm on a hunt list for writing this.",
+                        "Starting Simple Game Launcher. You call it stealing code, I call it permanently borrowing it, we are not the same.", 
+                        ]))
+else: print("Starting Simple Game Launcher...")
+
+from data import library
+translation = library.translation("en_us.json")
 
 import sys, os
 
@@ -5,8 +16,7 @@ import sys, os
 sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(__file__)+"/data")
 
-from data import library
-translation = library.translation("en_us.json")
+
 
 
 # Deal with given file arguments
@@ -23,9 +33,9 @@ except:
 if set_internet_connection != -1:
     internet_status = arguments[set_internet_connection+1]
 del set_internet_connection
-if internet_status == "true":
+if internet_status == "--true":
     internet_status = True
-elif internet_status == "false":
+elif internet_status == "--false":
     internet_status = False
 else:
     internet_status = None
@@ -34,7 +44,7 @@ else:
 if internet_status is None:
     
     # Set custom timeout for the initial internet check
-    try:custom_check_for_internet_timeout = int(arguments[arguments.index("--check_for_internet_timeout")]+1)
+    try:custom_check_for_internet_timeout = int(arguments[arguments.index("--check_for_internet_timeout")+1][1:])
     except: 
         custom_check_for_internet_timeout = 1
     
@@ -53,10 +63,10 @@ if internet_status is None:
         except socket.error as ex:
             print(ex)
             return False
-    is_connected_to_wifi = internet()
+    is_connected_to_wifi = internet(timeout=custom_check_for_internet_timeout)
 else:
     is_connected_to_wifi = internet_status
-
+del internet_status
 
 library.PRINT_SUPPRESSION_LEVEL = 1
 if check_for_update_bool and is_connected_to_wifi:
@@ -70,17 +80,13 @@ if check_for_update_bool and is_connected_to_wifi:
             print("Please hold on a moment while the launcher is updating...")
             updater = download_update.download_update()
             updater.update()
-            print("Done Downloading update, please restart the program")
+            print("Done Downloading update, the launcher will now try to restart itself")
+            import subprocess
+            subprocess.run(f"cd {os.getcwd()} && python {__file__} {' '.join(arguments)}", shell=True, text=False, capture_output=False)
             quit()
         
         else:
             print("The launcher is a little disappointed it couldn't update")
-
-
-
-
-
-
 
 
 

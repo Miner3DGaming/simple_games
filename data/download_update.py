@@ -52,8 +52,7 @@ class download_update():
                                     wf.write(file)
             end = self.time()
             time = end - start
-            print(f"Downloaded {item} ({len(response.text)} bytes, {len(response.text)//1028} megabytes in {time} seconds ({(len(response.text)*8/time)} bits per second))")
-            print()
+            print(f"- Downloaded {item} ({len(response.text)} bytes, ~ {len(response.text)//1028} megabytes in {time} seconds ({(len(response.text)*8/time)/1024} megabits per second))")
 
     def update(self):
         self.download_outdated_files(self.get_parts_to_update())
