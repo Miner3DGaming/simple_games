@@ -28,7 +28,6 @@ class download_update():
 
     def download_outdated_files(self, list:list):
         for item in list:
-            if item != "version.txt": continue
             home_path = self.os.path.join(self.base_path, item)
             project_path = self.os.path.join(self.project_link, item)
 
@@ -47,11 +46,6 @@ class download_update():
                         if rf.read() == "":
                             with open(home_path, "w") as wf:
                                 wf.write(file)
-            print(home_path)
-            print(project_path, end="\n\n")
-    
+
     def update(self):
         self.download_outdated_files(self.get_parts_to_update())
-        
-download_updates = download_update("hi")
-print(download_updates.update())
