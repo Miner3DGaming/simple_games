@@ -52,7 +52,7 @@ class download_update():
                                     wf.write(file)
             end = self.time()
             time = end - start
-            # len = bytes
+            print(f"Downloaded {item} ({len(response.text)} bytes, {len(response.text)//1028} bytes)")
             print((len(response.text)/time))
 
     def update(self):
