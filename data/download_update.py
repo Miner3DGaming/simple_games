@@ -1,5 +1,5 @@
 class download_update():
-    def __init__(self, language) -> None:
+    def __init__(self) -> None:
         import MSY, library, requests, os, time
         self.load_msy = MSY.load
         self.project_link = "https://raw.githubusercontent.com/Miner3DGaming/simple_games/main/"

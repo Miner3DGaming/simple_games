@@ -1,3 +1,4 @@
+
 import sys, os
 
 # Assure imports work anywhere
@@ -5,8 +6,8 @@ sys.path.append(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(__file__)+"/data")
 
 from data import library
-LANGUAGE, error = library.load_language("en_us.json")
-if error: print(error)
+translation = library.translation("en_us.json")
+
 
 # Deal with given file arguments
 arguments = sys.argv[1:]
@@ -60,19 +61,21 @@ else:
 library.PRINT_SUPPRESSION_LEVEL = 1
 if check_for_update_bool and is_connected_to_wifi:
     from data import check_for_update
-    check_for_updates = check_for_update.check_for_updates(LANGUAGE)
+    check_for_updates = check_for_update.check_for_updates("en_us.json")
     check_for_updates.library.PRINT_SUPPRESSION_LEVEL = 2
     need_for_update = check_for_updates.check_for_launcher_update()
     if need_for_update:
         from data import download_update
         if input("The launcher would like to update itself, would you like to cancel this action? (Inputting anything that isn't whitespace will stop it from doing so):").strip() == "":
             print("Please hold on a moment while the launcher is updating...")
-            updater = download_update.download_update(LANGUAGE)
+            updater = download_update.download_update()
             updater.update()
             print("Done Downloading update, please restart the program")
+            quit()
         
         else:
-            print("The launcher is disappointed it couldn't update")
+            print("The launcher is a little disappointed it couldn't update")
+
 
 
 

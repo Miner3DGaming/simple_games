@@ -4,8 +4,9 @@ class check_for_updates():
         self.requests = requests
         self.os = os
         self.library = library
+        temp = library.translation(language)
+        self.get_translation = temp.get_translation
         self.print = library.print
-        self.language = language
 
 
         self.base_path = os.path.dirname(os.path.dirname(__file__))
@@ -57,25 +58,25 @@ class check_for_updates():
             Returns if an update is available as a bool
         """
         response = self.requests.get(self.version_link)
-        if response.status_code != 200: print(self.library.ERROR, self.library.get_translation("launcher.update.connection_error", self.language) % response.status_code)
+        if response.status_code != 200: print(self.library.ERROR, self.get_translation("launcher.update.connection_error") % response.status_code)
         else:
             version_status = self.compare_versions(response.text)
             if version_status == self.NEWER_VERSION_AVAILABLE:
-                self.print(self.library.INFO, self.library.get_translation("launcher.update.newer_version_available", self.language))
+                self.print(self.library.INFO, self.get_translation("launcher.update.newer_version_available"))
                 return True
             
-            elif version_status == self.LOCAL_VERSION_IS_NEWER: self.print(self.library.DEBUG, self.library.get_translation("launcher.update.local_version_is_newer", self.language))
+            elif version_status == self.LOCAL_VERSION_IS_NEWER: self.print(self.library.DEBUG, self.get_translation("launcher.update.local_version_is_newer"))
                 
             
-            elif version_status == self.SAME_VERSIONS: self.print(self.library.DEBUG, self.library.get_translation("launcher.update.is_up_to_date", self.language))  
+            elif version_status == self.SAME_VERSIONS: self.print(self.library.DEBUG, self.get_translation("launcher.update.is_up_to_date"))  
             
             elif version_status == self.LOCAL_FILE_ERROR:
-                self.print(self.library.WARNING, self.library.get_translation("launcher.update.local_version_file_error", self.language) % self.local_version_file)
+                self.print(self.library.WARNING, self.get_translation("launcher.update.local_version_file_error") % self.local_version_file)
                 return None
 
-            elif version_status == self.ONLINE_FILE_ERROR: self.print(self.library.WARNING, self.library.get_translation("launcher.update.online_version_file_error"), self.language)
+            elif version_status == self.ONLINE_FILE_ERROR: self.print(self.library.WARNING, self.get_translation("launcher.update.online_version_file_error"))
             
-            elif version_status == self.ACHIEVEMENT_MADE_HOW_DID_WE_GET_HERE: self.print(self.library.WARNING, self.library.get_translation("launcher.update.online_version_file_error"), self.language)
+            elif version_status == self.ACHIEVEMENT_MADE_HOW_DID_WE_GET_HERE: self.print(self.library.WARNING, self.get_translation("launcher.update.online_version_file_error"))
         return False
 
 
