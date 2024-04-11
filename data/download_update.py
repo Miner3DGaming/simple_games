@@ -1,12 +1,13 @@
 class download_update():
     def __init__(self, language) -> None:
-        import MSY, library, requests, os
+        import MSY, library, requests, os, time
         self.load_msy = MSY.load
         self.project_link = "https://raw.githubusercontent.com/Miner3DGaming/simple_games/main/"
         self.requests = requests
         self.required_files_link = "data/required_files.msy"
         self.os = os
         self.base_path = os.path.dirname(os.path.dirname(__file__))
+        self.time = time.time
         
         
         
@@ -28,24 +29,31 @@ class download_update():
 
     def download_outdated_files(self, list:list):
         for item in list:
+            start = self.time()
             home_path = self.os.path.join(self.base_path, item)
             project_path = self.os.path.join(self.project_link, item)
 
             response = self.requests.get(project_path)
+            response.__sizeof__
             if response.status_code == 200:
                 if self.os.path.exists(home_path):
-                    with open(home_path, "r") as f:
-                        file = f.read()
+                    with open(home_path, "r") as f: file = f.read()
                 else: file = ""
+                if response.text == file: continue
                 try:
                     with open(home_path, "w") as f:
                         f.write(str(response.text))
                 except Exception as e: print(e)
                 finally:
-                    with open(home_path, "r") as rf:
-                        if rf.read() == "":
-                            with open(home_path, "w") as wf:
-                                wf.write(file)
+                    if not file == "":
+                        with open(home_path, "r") as rf:
+                            if rf.read() == "":
+                                with open(home_path, "w") as wf:
+                                    wf.write(file)
+            end = self.time()
+            time = end - start
+            # len = bytes
+            print((len(response.text)/time))
 
     def update(self):
         self.download_outdated_files(self.get_parts_to_update())
