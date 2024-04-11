@@ -64,13 +64,20 @@ if check_for_update_bool and is_connected_to_wifi:
     check_for_updates.library.PRINT_SUPPRESSION_LEVEL = 2
     need_for_update = check_for_updates.check_for_launcher_update()
     if need_for_update:
-        print("Launcher update is available yet automatic updating is not yet implemented...")
+        from data import download_update
+        if input("The launcher would like to update itself, would you like to cancel this action? (Inputting anything that isn't whitespace will stop it from doing so):").strip() == "":
+            print("Please hold on a moment while the launcher is updating...")
+            updater = download_update.download_update(LANGUAGE)
+            updater.update()
+            print("Done Downloading update, please restart the program")
+        
+        else:
+            print("The launcher is disappointed it couldn't update")
 
 
 
 
 
-from data import download_update
-print(is_connected_to_wifi)
+
 
 
