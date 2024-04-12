@@ -8,23 +8,39 @@ from random import random, choice
 from .tbe import determine_affirmative#, pass_func
 
 
-
-def clear_console() -> Tuple[bool, str]:
-    """
-    Clears the console screen on Unix-like systems.
-
-    :return: A tuple containing a boolean value indicating whether the screen was successfully cleared,
-            and a string message describing the result of the operation.
-            If an error occurs, the boolean value will be False and the message will include the specific
-            error message.
-    :rtype: tuple[bool, str]
-    """
-    try:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        return True, "Screen cleared successfully"
-    except Exception as e:
-        return False, f"Error clearing screen: {str(e)}"
+if os.name == 'nt':
     
+    def clear_console() -> Tuple[bool, str]:
+        """
+        Clears the console screen on Unix-like systems.
+
+        :return: A tuple containing a boolean value indicating whether the screen was successfully cleared,
+                and a string message describing the result of the operation.
+                If an error occurs, the boolean value will be False and the message will include the specific
+                error message.
+        :rtype: tuple[bool, str]
+        """
+        try:
+            os.system('cls')
+            return True, "Screen cleared successfully"
+        except Exception as e:
+            return False, f"Error clearing screen: {str(e)}"
+else:
+    def clear_console() -> Tuple[bool, str]:
+        """
+        Clears the console screen on Unix-like systems.
+
+        :return: A tuple containing a boolean value indicating whether the screen was successfully cleared,
+                and a string message describing the result of the operation.
+                If an error occurs, the boolean value will be False and the message will include the specific
+                error message.
+        :rtype: tuple[bool, str]
+        """
+        try:
+            os.system('clear')
+            return True, "Screen cleared successfully"
+        except Exception as e:
+            return False, f"Error clearing screen: {str(e)}"
 
 
 

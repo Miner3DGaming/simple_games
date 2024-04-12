@@ -421,7 +421,7 @@ def number_to_words(number) -> str:
     "cenoctoquinquagintillion", "cennovemquinquagintillion",
     "censexagintillion", "cenunsexagintillion", "cendosexagintillion",
     "centresexagintillion", "cenquattuorsexagintillion",
-    "cenquinsexagintillion", "cenquinsexagintilliard", "censexsexagintillion",
+    "cenquinsexagintillion", "cenquinsexagintilliard", "censexagintillion",
     "censexsexagintilliard", "censeptensexagintillion", "censeptensexagintilliard",
     "cenoctosexagintillion", "cenoctosexagintilliard", "cennovemsexagintillion",
     "cennovemsexagintilliard", "censeptuagintillion", "censeptuagintilliard",
@@ -434,7 +434,6 @@ def number_to_words(number) -> str:
     "cennovemseptuagintilliard", "cenoctogintillion", "cenoctogintilliard", "cenunoctogintillion",
     "cenunoctogintilliard", "cendooctogintillion", "cendooctogintilliard",
     "centreoctogintillion"
-    
     ]
 
         
@@ -535,7 +534,8 @@ def check_directory_and_sub_directory_for_undocumented_functions(directory_path)
 
 
 
-
+def autocomplete(prefix, word_list):
+    return [word for word in word_list if word.startswith(prefix)]
 
 
 

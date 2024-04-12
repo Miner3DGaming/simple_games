@@ -27,3 +27,9 @@ def remove_duplicates_from_dictionary(dictionary):
             unique_values.remove(value)
 
     return new_dictionary
+
+def find_index(dictionary, key, value):
+    for item in dictionary:
+        if dictionary[item][key] == value:
+            return item
+    return None

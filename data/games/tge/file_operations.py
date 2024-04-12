@@ -4,7 +4,7 @@ from filecmp import dircmp as file_dircmp, cmp as file_cmp
 from ast import parse as ast_parse, walk as ast_walk, FunctionDef as ast_FunctionDef
 import zipfile 
 
-from . import pathlib_path
+from pathlib import Path as pathlib_path
 from . import List, Union, Tuple , Any
 from . import REQUESTS, TKINTER, PYSHORTCUTS
 

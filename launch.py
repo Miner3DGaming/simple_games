@@ -89,5 +89,35 @@ if check_for_update_bool and is_connected_to_wifi:
         else:
             print("The launcher is a little disappointed it couldn't update")
 
+def start_game(id):
+    print(id)
 
 
+from data.check_games import get_installed_games
+from data.games import tge
+console = tge.load_console_utils()
+
+while True:
+    console.clear_console()
+    games = get_installed_games()
+    print("Available Games:")
+    for i in games:
+        print(f'   - {games[i]["display_name"]} ({games[i]["version"]})')
+    while True:
+        print("\n Write what game you wanna play (Autocorrect X, Autocomplete ✓ ): ", end="")
+        selection = input()
+        if selection == "": break
+        print([games[x]["display_name_lower"] for x in games])
+        possible_games = tge.tbe.autocomplete(selection.lower(), [games[x]["display_name_lower"] for x in games])
+        print(possible_games)
+        if len(possible_games) == 1:
+            game = games[tge.manipulation.dictionary_utils.find_index(games, "display_name_lower", possible_games[0])]
+            start_game(game)
+            quit()
+        elif len(possible_games) == 0: break
+        else:
+            console.clear_console()
+            print(f"There are several games starting with \"{selection}\":")
+            for i in range(len(possible_games)):
+                g = tge.manipulation.dictionary_utils.find_index(games, "display_name_lower", possible_games[i])
+                print(f'   - {games[g]["display_name"]} ({games[g]["version"]})')
