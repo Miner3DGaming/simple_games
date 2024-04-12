@@ -4,6 +4,7 @@ LICENSE
 data/MSY.py
 
 #DYNAMIC
+.vscode/settings.json
 README.md
 version.txt
 launch.py

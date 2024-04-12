@@ -1,0 +1,9 @@
+# pyautogui
+# numpy
+# pygame
+# gtts
+# pyperclip
+# requests
+# Pillow
+# bs4
+# gtts

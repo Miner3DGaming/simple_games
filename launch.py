@@ -2,8 +2,9 @@ import random
 if random.random() > 0.95:
     print(random.choice([
                         "Starting Simple Game Launcher, a Crashaholic like no other!", 
-                        "Starting Simple Game Launcher, stealing less user data than Google, Twitch, Microsoft, Firefox, Opera, Facebook, and I'm on a hunt list for writing this.",
+                        "Starting Simple Game Launcher, stealing less user data than Google, Twitch, Microsoft, Firefox, Opera, Facebook, aaannndddd I'm on a hit list for writing this.",
                         "Starting Simple Game Launcher. You call it stealing code, I call it permanently borrowing it, we are not the same.", 
+                        "Starting Simple Game Launcher, the Launcher containing code opposite to its name...."
                         ]))
 else: print("Starting Simple Game Launcher...")
 
