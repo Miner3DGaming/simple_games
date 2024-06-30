@@ -11,7 +11,7 @@ class check_for_updates():
 
         self.base_path = os.path.dirname(os.path.dirname(__file__))
 
-        self.local_version_file = self.base_path + "\\version.txt"
+        self.local_version_file = self.base_path + "/data/version.txt"
         self.version_link = "https://raw.githubusercontent.com/Miner3DGaming/simple_games/main/version.txt"
 
 
